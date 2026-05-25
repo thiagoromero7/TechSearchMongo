@@ -37,47 +37,99 @@
         </section>
     </header>
 
-    <main>
-        <div class="cart-items">
-            {% for item in cart_items %}
-            <div class="item">
-                <span>{{ item.product.nome }}</span>
-                <span>R$ {{ item.price }}</span>
-            </div>
-            {% endfor %}
+    <main class="cart-container">
+        <div class="cart-header">
+            <h1>Seu <span>Carrinho</span></h1>
         </div>
-    </main>
 
-    <aside class="summary">
-        <h3>Resumo</h3>
-        <div class="summary-row">
-            <span>Subtotal</span>
-            <span>R$ {{ subtotal }}</span>
-        </div>
-        
-        <div class="coupon-area">
-            <form method="POST" action="/aplicar-cupom">
-                <div style="display: flex; gap: 5px;">
-                    <input type="text" name="codigo_cupom" placeholder="Digite seu cupom...">
-                    <button type="submit" class="btn-apply">Aplicar</button>
+        {% if cart_items %}
+        <div class="cart-wrapper">
+            
+            <div class="cart-items">
+                {% for item in cart_items %}
+                <div class="cart-item">
+                    <div class="item-img">
+                        {% if item.imagem %}
+                            <img src="{{ item.imagem }}" alt="{{ item.product.nome }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        {% else %}
+                            <i class="fa-solid fa-box"></i>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="item-details">
+                        <div class="item-category">TechSearch</div>
+                        <h3 class="item-name">{{ item.product.nome }}</h3>
+                        <div class="item-price-unit">R$ {{ "%.2f"|format(item.preco)|replace('.', ',') }} un.</div>
+                    </div>
+
+                    <div class="item-quantity">
+                        <form action="/carrinho/atualizar/{{ item._id }}" method="POST">
+                            <button type="submit" name="acao" value="diminuir" class="qty-btn"><i class="fa-solid fa-minus"></i></button>
+                            <input type="text" name="quantidade" value="{{ item.quantidade | default(1) }}" class="qty-input" readonly>
+                            <button type="submit" name="acao" value="aumentar" class="qty-btn"><i class="fa-solid fa-plus"></i></button>
+                        </form>
+                    </div>
+
+                    <div class="item-subtotal">
+                        R$ {{ "%.2f"|format(item.preco * (item.quantidade | default(1)))|replace('.', ',') }}
+                    </div>
+
+                    <form action="/carrinho/remover/{{ item._id }}" method="POST" style="margin: 0;">
+                        <button type="submit" class="btn-remove" title="Remover item">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </form>
                 </div>
-            </form>
+                {% endfor %}
+            </div>
+
+            <aside class="cart-summary">
+                <h3>Resumo do Pedido</h3>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>R$ {{ subtotal }}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Frete</span>
+                    <span class="free-shipping">Grátis</span>
+                </div>
+                
+                <div class="coupon-area">
+                    <form method="POST" action="/aplicar-cupom" style="width: 100%; display: flex; gap: 10px;">
+                        <input type="text" name="codigo_cupom" placeholder="Digite seu cupom...">
+                        <button type="submit" class="btn-apply">Aplicar</button>
+                    </form>
+                </div>
+                
+                <hr class="summary-divider">
+
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span>R$ {{ total_price }}</span>
+                </div>
+            </aside>
+
+            <div class="carrinho-botoes-container">
+                <a href="/" class="btn-carrinho-novo continuar">
+                    <i class="fas fa-arrow-left"></i> Continuar Comprando
+                </a>
+                <a href="/endereco.html" class="btn-carrinho-novo finalizar">
+                    Finalizar Compra <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                </a>
+            </div>
+
+        </div>
+        {% else %}
+        
+        <div class="cart-empty">
+            <div class="empty-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <h2>Seu carrinho está vazio</h2>
+            <p>Parece que você ainda não adicionou nenhum item incrível da TechSearch ao seu carrinho.</p>
+            <a href="/" class="btn-hero-fallback">Explorar Produtos</a>
         </div>
         
-        <div class="summary-row total">
-            <span>Total</span>
-            <span>R$ {{ total_price }}</span>
-        </div>
-    </aside>
-
-    <div class="carrinho-botoes-container">
-        <a href="/" class="btn-carrinho-novo continuar">
-            <i class="fas fa-arrow-left"></i> Continuar Comprando
-        </a>
-        <a href="/endereco.html" class="btn-carrinho-novo finalizar">
-            Finalizar Compra
-        </a>
-    </div>
+        {% endif %}
+    </main>
 
 </body>
 </html>

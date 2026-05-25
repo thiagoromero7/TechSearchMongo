@@ -24,12 +24,24 @@
             </form>
                 
             <div class="user-info">
-                <span class="welcome-text">Olá, <strong>Visitante</strong></span>
-                <span class="auth-links">
-                    <a href="/login.html">Entre</a> ou 
-                    <strong><a href="/cadastro.html">Cadastre-se</a></strong>
-                </span>
-            </div>
+    {% if user %}
+        <span class="welcome-text">Olá, <strong>{{ user.username }}</strong></span>
+        
+        {% if user.username == 'admin' %}
+            <a href="/dashboard_admin.html" class="admin-btn" style="background-color: #4f46e5; color: white; padding: 6px 12px; border-radius: 5px; text-decoration: none; margin: 0 10px; font-size: 14px; font-weight: bold;">
+                <i class="fa-solid fa-gear"></i> Painel de Gestão
+            </a>
+        {% endif %}
+        
+        <a href="/logout" class="logout-btn">Sair</a>
+    {% else %}
+        <span class="welcome-text">Olá, <strong>Visitante</strong></span>
+        <span class="auth-links">
+            <a href="/login.html">Entre</a> ou 
+            <strong><a href="/cadastro.html">Cadastre-se</a></strong>
+        </span>
+    {% endif %}
+</div>
 
             <nav class="atalhos">
                 <a href="#" title="Atendimento">🎧</a>
@@ -50,7 +62,27 @@
             <div class="carousel-produtos-container">
                 <button class="seta-prod anterior" onclick="scrollProdutos(-1)">&#10094;</button>
                 <div class="produtos-grid" id="produtosSlider">
-                    </div>
+                    {% for produto in produtos %}
+                        <div class="produto-card">
+                            
+                            <div style="position: relative;">
+                                <a href="/favoritos/adicionar/{{ produto['_id'] }}" style="position: absolute; top: 8px; right: 8px; background: rgba(0, 0, 0, 0.6); color: #ff4757; padding: 8px; border-radius: 50%; text-decoration: none; font-size: 1.2rem; transition: transform 0.2s; z-index: 2;" title="Adicionar aos Favoritos">❤️</a>
+                                <img src="{{ produto.imagem }}" alt="{{ produto.nome }}" style="width: 100%; border-radius: 8px;">
+                            </div>
+                            
+                            <h3>{{ produto.nome }}</h3>
+                            <p>R$ {{ "%.2f"|format(produto.preco)|replace('.', ',') }}</p>
+                            
+                            <a href="/carrinho/adicionar/{{ produto['_id'] }}" class="btn-add-carrinho">
+                                Adicionar ao Carrinho
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="vazio-container" style="grid-column: 1/-1; text-align: center; padding: 4px 0; color: #aaa;">
+                            <p>Nenhum produto disponível nas ofertas no momento.</p>
+                        </div>
+                    {% endfor %}
+                </div>
                 <button class="seta-prod proximo" onclick="scrollProdutos(1)">&#10095;</button>
             </div>
         </section>
@@ -60,13 +92,11 @@
     <script src="/static/js/home.js"></script>
     <script src="/static/js/teladebusca.js"></script>
 
-    <script>
-        // Exemplo de como você vai carregar os produtos do MongoDB com o novo backend
+     <script>
         fetch('/api/techs')
             .then(res => res.json())
             .then(data => {
                 const container = document.getElementById('produtosSlider');
-                // Aqui você cria o HTML dos cards baseado no 'data' que vem do MongoDB
             });
     </script>
 </body>

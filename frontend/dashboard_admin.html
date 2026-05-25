@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Admin - TechSearch</title>
+    <title>Painel Admin - Loja</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -12,48 +12,282 @@
 <body>
 
     <aside style="background-color: #1a1d24 !important; color: #ffffff; display: flex; flex-direction: column; justify-content: space-between; height: 100vh;">
+        
         <div>
             <div style="padding: 20px; border-bottom: 1px solid #2d313f; display: flex; align-items: center; gap: 12px;">
                 <div style="background-color: #4f46e5; color: white; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
                     <i class="fa-solid fa-store"></i>
                 </div>
-                <span style="font-size: 1.2rem; font-weight: bold;">TechSearch Admin</span>
+                <span style="font-size: 18px; font-weight: bold; color: #ffffff;">Painel Loja</span>
             </div>
+            
+            <nav style="padding: 15px; display: flex; flex-direction: column; gap: 5px;">
+                
+                <a href="/" style="display: flex; align-items: center; gap: 12px; padding: 12px; color: #a5b4fc; text-decoration: none; border-bottom: 1px solid #2d313f; margin-bottom: 10px; font-weight: 600; border-radius: 8px;">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Voltar à Loja</span>
+                </a>
+                
+                <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; background-color: #4f46e5; color: white; text-decoration: none; border-radius: 8px;">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; color: #9ca3af; text-decoration: none; border-radius: 8px;">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Produtos</span>
+                </a>
+                <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; color: #9ca3af; text-decoration: none; border-radius: 8px;">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Encomendas</span>
+                </a>
+                <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; color: #9ca3af; text-decoration: none; border-radius: 8px;">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Clientes</span>
+                </a>
+                <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; color: #9ca3af; text-decoration: none; border-radius: 8px;">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Configurações</span>
+                </a>
+            </nav>
+        </div>
+
+        <div style="padding: 20px; border-top: 1px solid #2d313f; background-color: #15171c;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 36px; height: 36px; background-color: #374151; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                        A
+                    </div>
+                    <div>
+                        <p style="margin: 0; font-size: 14px; font-weight: 600; color: white;">Admin</p>
+                        <p style="margin: 0; font-size: 11px; color: #9ca3af;">admin@loja.com</p>
+                    </div>
+                </div>
+                <a href="/logout" title="Sair do sistema" style="color: #ef4444; font-size: 18px; text-decoration: none;">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
             </div>
+        </div>
+        
     </aside>
 
+    <main>
+        <header>
+            <div class="topbar-left">
+                <button class="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1>Visão Geral</h1>
+            </div>
+            <div class="topbar-right">
+                <button class="notification-btn">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+                <div class="separator"></div>
+                <div class="profile-menu">
+                    <span class="hidden-sm">Admin</span>
+                    <i class="fa-solid fa-angle-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            
+            <div class="section-header">
+                <div>
+                    <h2>Gestão de Produtos</h2>
+                    <p>Adicione, edite ou gira os produtos ativos na sua loja.</p>
+                </div>
+                <a href="/cadastro_produto.html" class="btn-redirect">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Registar Novo Produto</span>
+                </a>
+            </div>
+
+<div class="metrics-grid">
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">Vendas Totais</span>
+                        <h3 class="card-value">R$ {{ "%.2f"|format(vendas_totais)|replace('.', ',') }}</h3>
+                        <p class="card-trend trend-up"><i class="fa-solid fa-arrow-up"></i> Faturamento real</p>
+                    </div>
+                    <div class="card-icon icon-sales">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">Total de Produtos</span>
+                        <h3 class="card-value">{{ total_produtos }}</h3>
+                        <p class="card-trend trend-neutral">Cadastrados no banco de dados</p>
+                    </div>
+                    <div class="card-icon icon-products">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">Encomendas Pendentes</span>
+                        <h3 class="card-value">{{ encomendas_pendentes }}</h3>
+                        <p class="card-trend trend-warn"><i class="fa-solid fa-clock"></i> Itens nos carrinhos agora</p>
+                    </div>
+                    <div class="card-icon icon-orders">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">Visualizações</span>
+                        <h3 class="card-value">{{ visualizacoes }}</h3>
+                        <p class="card-trend trend-neutral"><i class="fa-solid fa-eye"></i> Em breve</p>
+                    </div>
+                    <div class="card-icon icon-views">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Lista de Produtos</h3>
+                    <div class="search-wrapper">
+                        <span>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" id="searchInputAdmin" placeholder="Procurar produto..." onkeyup="filtrarProdutos()">
+                    </div>
+                </div>
+                <div class="responsive-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Stock</th>
+                                <th>Estado</th>
+                                <th class="actions-cell">Ações</th>
+                            </tr>
+                        </thead>
+                       <tbody>
+                            {% for produto in produtos %}
+                            <tr>
+                                <td>
+                                    <div class="product-cell">
+                                        <div class="product-img-placeholder" style="overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                                            {% if produto.imagem %}
+                                                <img src="{{ produto.imagem }}" alt="{{ produto.nome }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                            {% else %}
+                                                <i class="fa-solid fa-box"></i>
+                                            {% endif %}
+                                        </div>
+                                        <div class="product-info">
+                                            <p style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ produto.nome }}">
+                                                {{ produto.nome }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{ produto.categoria }}</td>
+                                <td>R$ {{ produto.preco }}</td>
+                                <td>{{ produto.quantidade }} unid.</td>
+                                <td>
+                                    <span class="badge-active" style="background: #10b98120; color: #10b981; padding: 4px 8px; border-radius: 4px; font-size: 12px;">Ativo</span>
+                                </td>
+                                <td class="actions-cell" style="display: flex; gap: 10px;">
+                                    <button title="Editar (Em breve)"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    
+                                    <form action="/deletar_produto/{{ produto['_id'] }}" method="POST" style="margin: 0;" onsubmit="return confirm('Tem certeza absoluta que deseja deletar o produto {{ produto.nome }}? Esta ação não pode ser desfeita!');">
+                                        <button type="submit" title="Deletar Produto" style="color: #ff4757; background: transparent; border: none; cursor: pointer;">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 30px; color: #aaa;">
+                                    Nenhum produto cadastrado no banco de dados.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 Loja Admin. Todos os direitos reservados.
+        </footer>
+    </main>
+
     <div id="product-modal">
-        <form method="POST" action="/admin/salvar-produto">
-            <div class="form-group-grid">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <span>Registar Novo Produto</span>
+                </h3>
+                <button id="close-modal-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <form id="product-form" method="POST" action="/admin/salvar-produto">
+                
                 <div>
                     <label for="name">Nome do Produto</label>
-                    <input type="text" id="name" name="name" required placeholder="Nome do produto">
+                    <input type="text" id="name" name="name" required placeholder="Ex: Teclado Mecânico RGB">
                 </div>
+
+                <div class="form-group-grid">
+                    <div>
+                        <label for="category">Categoria</label>
+                        <select id="category" name="category" required>
+                            <option value="" disabled selected>Selecione...</option>
+                            <option value="Informatica">Informática</option>
+                            <option value="Celulares">Telemóveis & Tablets</option>
+                            <option value="Acessorios">Acessórios</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="sku">Código SKU (Opcional)</label>
+                        <input type="text" id="sku" name="sku" placeholder="Ex: LOJ-93821">
+                    </div>
+                </div>
+
+                <div class="form-group-grid">
+                    <div>
+                        <label for="price">Preço (€)</label>
+                        <input type="number" step="0.01" id="price" name="price" required placeholder="0,00">
+                    </div>
+                    <div>
+                        <label for="stock">Stock Inicial</label>
+                        <input type="number" id="stock" name="stock" required placeholder="Ex: 10">
+                    </div>
+                </div>
+
                 <div>
-                    <label for="price">Preço (€)</label>
-                    <input type="number" step="0.01" id="price" name="price" required placeholder="0,00">
+                    <label for="description">Descrição do Produto</label>
+                    <textarea id="description" name="description" rows="3" placeholder="Escreva as principais características do produto..."></textarea>
                 </div>
+
                 <div>
-                    <label for="stock">Stock Inicial</label>
-                    <input type="number" id="stock" name="stock" required placeholder="Ex: 10">
+                    <label for="image_url">URL da Imagem do Produto</label>
+                    <input type="url" id="image_url" name="image_url" placeholder="https://exemplo.com/imagem.jpg">
                 </div>
-            </div>
 
-            <div>
-                <label for="description">Descrição do Produto</label>
-                <textarea id="description" name="description" rows="3" placeholder="Escreva as características..."></textarea>
-            </div>
-
-            <div>
-                <label for="image_url">URL da Imagem</label>
-                <input type="url" id="image_url" name="image_url" placeholder="https://exemplo.com/imagem.jpg">
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" id="cancel-modal-btn">Cancelar</button>
-                <button type="submit">Guardar Produto</button>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="button" id="cancel-modal-btn">Cancelar</button>
+                    <button type="submit">Guardar Produto</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="/static/js/home.js"></script>

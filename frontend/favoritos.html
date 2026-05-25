@@ -44,11 +44,18 @@
             <h2>❤️ Meus Favoritos</h2>
             <div class="produtos-grid" id="favoritosGrid">
                 {% for produto in produtos_favoritos %}
-                    <div class="produto-card">
+                    <div class="produto-card" style="position: relative;">
+                        
+                        <form action="/favoritos/remover/{{ produto['_id'] }}" method="POST" style="position: absolute; top: 8px; right: 8px; margin: 0; z-index: 2;">
+                            <button type="submit" style="background: rgba(0, 0, 0, 0.7); border: none; color: #ff4757; padding: 8px; border-radius: 50%; cursor: pointer; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" title="Remover dos Favoritos" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+
                         <img src="{{ produto.imagem }}" alt="{{ produto.nome }}">
                         <h3>{{ produto.nome }}</h3>
                         <p>R$ {{ produto.preco }}</p>
-                        <a href="/carrinho/adicionar/{{ produto.id }}" class="btn-add-carrinho">Adicionar ao Carrinho</a>
+                        <a href="/carrinho/adicionar/{{ produto.produto_id }}" class="btn-add-carrinho">Adicionar ao Carrinho</a>
                     </div>
                 {% else %}
                     <div class="vazio-container">
