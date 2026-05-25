@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - TechSearch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <div class="container">
+    <div class="logo">TechSearch</div>
+    
+    <form class="form" id="loginForm" method="POST" action="/login">
+      <h2>Entrar</h2>
+      
+        <div id="message-container" style="margin-bottom: 15px; text-align: center; color: #ff4757;">
+        </div>
+
+      <div class="input-group">
+        <input type="text" id="username" name="username" placeholder="Email ou Usuário" required>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" name="password" placeholder="Senha" required>
+      </div>
+
+      <div class="form-options">
+        <label class="remember-me">
+          <input type="checkbox" name="remember"> Lembrar-me
+        </label>
+        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+      </div>
+
+      <button type="submit" id="loginBtn">
+        <span class="btn-text">Entrar</span>
+      </button>
+
+      <div class="redirect">
+        <p>Não tem conta? <a href="/cadastro.html">Cadastre-se</a></p>
+        <p><a href="/">← Voltar para a loja</a></p>
+      </div>
+    </form>
+  </div>
+
+  <footer class="auth-footer-bottom">
+    <p>&copy; 2026 TechSearch. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="/static/js/particles.js"></script>
+</body>
+</html>

@@ -1,0 +1,731 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   ========================================================================== */
+:root {
+    --bg-main: #f3f4f6;
+    --bg-card: #ffffff;
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --text-muted: #9ca3af;
+    
+    /* Cores da Marca */
+    --indigo-600: #4f46e5;
+    --indigo-750: #4338ca;
+    --indigo-50: #f5f3ff;
+    --slate-900: #0f172a;
+    --slate-800: #1e293b;
+    --slate-400: #94a3b8;
+    --slate-300: #cbd5e1;
+
+    /* Cores de Estado */
+    --green-100: #dcfce7;
+    --green-800: #166534;
+    --green-500: #22c55e;
+    --amber-50: #fffbeb;
+    --amber-600: #d97706;
+    --amber-500: #f59e0b;
+    --blue-50: #eff6ff;
+    --blue-600: #2563eb;
+    --emerald-50: #ecfdf5;
+    --emerald-600: #059669;
+    --red-500: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   2. BARRA LATERAL (SIDEBAR)
+   ========================================================================== */
+aside {
+    width: 256px;
+    background-color: var(--slate-900);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-shrink: 0;
+    z-index: 40;
+}
+
+/* Topo do Sidebar */
+aside .p-6 {
+    padding: 1.5rem;
+    border-b: 1px solid var(--slate-800);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+aside .bg-indigo-600 {
+    background-color: var(--indigo-600);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+aside .text-lg {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* Links de Navegação */
+nav {
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+nav a.bg-indigo-600 {
+    background-color: var(--indigo-600);
+    color: #ffffff;
+}
+
+nav a:not(.bg-indigo-600) {
+    color: var(--slate-300);
+}
+
+nav a:not(.bg-indigo-600):hover {
+    background-color: var(--slate-800);
+    color: #ffffff;
+}
+
+/* Rodapé do Sidebar */
+aside > div:last-child {
+    padding: 1rem;
+    border-top: 1px solid var(--slate-800);
+}
+
+.flex-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background-color: var(--slate-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.875rem;
+    color: #a5b4fc;
+}
+
+.user-info p:first-child {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.user-info p:last-child {
+    font-size: 10px;
+    color: var(--slate-400);
+}
+
+.logout-btn {
+    color: var(--slate-400);
+    transition: color 0.2s;
+}
+
+.logout-btn:hover {
+    color: #f87171;
+}
+
+/* ==========================================================================
+   3. CONTEÚDO PRINCIPAL (MAIN)
+   ========================================================================== */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* Topbar Superior */
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    flex-shrink: 0;
+}
+
+header h1 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #111827;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notification-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    position: relative;
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+
+.notification-btn:hover {
+    color: #111827;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--red-500);
+    border-radius: 50%;
+}
+
+.separator {
+    width: 1px;
+    height: 2rem;
+    background-color: #e5e7eb;
+}
+
+.profile-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+/* Menu Hamburguer (Escondido por padrão no Desktop) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   4. ÁREA INTERNA (PAINEL DE DADOS)
+   ========================================================================== */
+.content-wrapper {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex-grow: 1;
+}
+
+/* Cabeçalho da Seção Interna */
+.section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111827;
+}
+
+.section-header p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Botão de Registo */
+#open-modal-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--indigo-600);
+    color: #ffffff;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+    transition: all 0.2s;
+}
+
+#open-modal-btn:hover {
+    background-color: var(--indigo-750);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+}
+
+/* ==========================================================================
+   5. CARDS DE MÉTRICAS (GRID)
+   ========================================================================== */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.card-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.card-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111827;
+}
+
+.card-trend {
+    font-size: 0.75rem;
+}
+.trend-up { color: var(--green-500); }
+.trend-warn { color: var(--amber-500); }
+.trend-neutral { color: var(--text-muted); }
+
+.card-icon {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-sales { background-color: var(--indigo-50); color: var(--indigo-600); }
+.icon-products { background-color: var(--blue-50); color: var(--blue-600); }
+.icon-orders { background-color: var(--amber-50); color: var(--amber-600); }
+.icon-views { background-color: var(--emerald-50); color: var(--emerald-600); }
+
+/* ==========================================================================
+   6. TABELA DE PRODUTOS
+   ========================================================================== */
+.table-container {
+    background-color: var(--bg-card);
+    border-radius: 1rem;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.table-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.table-header h3 {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #111827;
+}
+
+/* Barra de Pesquisa */
+.search-wrapper {
+    position: relative;
+    width: 258px;
+}
+
+.search-wrapper span {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-wrapper input:focus {
+    border-color: var(--indigo-600);
+}
+
+/* Estrutura da Tabela */
+.responsive-table {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.875rem;
+}
+
+thead tr {
+    background-color: #f9fafb;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+th {
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+tbody tr {
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.2s;
+}
+
+tbody tr:hover {
+    background-color: rgba(249, 250, 251, 0.5);
+}
+
+td {
+    padding: 1rem 1.5rem;
+    color: #374151;
+    vertical-align: middle;
+}
+
+/* Detalhes do Produto na Linha */
+.product-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.product-img-placeholder {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.product-info p:first-child {
+    font-weight: 600;
+    color: #111827;
+}
+
+.product-info p:last-child {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Badges de Estado */
+.badge-active {
+    display: inline-flex;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: var(--green-100);
+    color: var(--green-800);
+}
+
+/* Botões de Ação na Tabela */
+.actions-cell {
+    text-align: right;
+}
+
+.actions-cell button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-left: 0.5rem;
+    transition: color 0.2s;
+}
+
+.actions-cell button:first-child:hover { color: var(--indigo-600); }
+.actions-cell button:last-child:hover { color: var(--red-500); }
+
+/* ==========================================================================
+   7. MODAL DE REGISTO (POP-UP)
+   ========================================================================== */
+#product-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    transition: all 0.3s ease;
+    
+    /* Estado inicial: Oculto */
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Classe utilitária para quando o JavaScript abrir o modal */
+#product-modal.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-box {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 576px;
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    margin: 1rem;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(16px);
+    transition: transform 0.3s ease;
+}
+
+#product-modal.open .modal-box {
+    transform: translateY(0);
+}
+
+/* Cabeçalho do Modal */
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 1.125rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-header h3 i {
+    color: var(--indigo-600);
+    font-size: 1.25rem;
+}
+
+#close-modal-btn {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: none;
+    background: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+#close-modal-btn:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+/* Formulário Interno do Modal */
+#product-form {
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media(min-width: 640px) {
+    .form-group-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+#product-form label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+#product-form input, 
+#product-form select, 
+#product-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    outline: none;
+    background-color: #ffffff;
+    transition: all 0.2s;
+}
+
+#product-form input:focus, 
+#product-form select:focus, 
+#product-form textarea:focus {
+    border-color: var(--indigo-600);
+    box-shadow: 0 0 0 1px var(--indigo-600);
+}
+
+#product-form textarea {
+    resize: none;
+}
+
+/* Rodapé do Modal (Botões) */
+.modal-footer {
+    padding-top: 1rem;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+#cancel-modal-btn {
+    padding: 0.75rem 1.25rem;
+    border: 1px solid #e5e7eb;
+    background: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #4b5563;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#cancel-modal-btn:hover {
+    background-color: #f9fafb;
+}
+
+#product-form button[type="submit"] {
+    padding: 0.75rem 1.25rem;
+    background-color: var(--indigo-600);
+    color: #ffffff;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#product-form button[type="submit"]:hover {
+    background-color: var(--indigo-750);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+}
+
+/* ==========================================================================
+   8. RODAPÉ DO ECRÃ
+   ========================================================================== */
+footer {
+    background-color: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   9. RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    aside {
+        display: none; /* Esconde a sidebar em ecrãs pequenos */
+    }
+    
+    .menu-toggle {
+        display: block; /* Mostra o botão hamburguer */
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    #open-modal-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    header span.hidden-sm {
+        display: none;
+    }
+}

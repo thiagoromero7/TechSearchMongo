@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endereço de Entrega - TechSearch</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/teladebusca.css">
+    <link rel="stylesheet" href="/static/css/endereco.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <section class="top-header">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static/imagens/logo.png" alt="TechSearch">
+                </a>
+            </div>
+            <div class="user-info">
+                <span class="welcome-text">Olá, <strong>{{ username }}</strong></span>
+            </div>
+            <nav class="atalhos">
+                <a href="/" title="Voltar para a Home">🏠</a>
+                <a href="/carrinho.html" title="Carrinho">🛒</a>
+            </nav>
+        </section>
+    </header>
+
+    <main class="endereco-container">
+        <form class="form" method="POST" action="/salvar-endereco">
+            <h2>Endereço de Entrega</h2>
+
+            <div class="input-group">
+                <input type="text" id="cep" name="cep" placeholder="CEP (00000-000)" maxlength="9" required>
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group flex-3">
+                    <input type="text" id="rua" name="rua" placeholder="Rua / Logradouro" required>
+                </div>
+                <div class="input-group flex-1">
+                    <input type="text" id="numero" name="numero" placeholder="Nº" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="complemento" name="complemento" placeholder="Complemento (Apto, Bloco - Opcional)">
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group flex-3">
+                    <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
+                </div>
+                <div class="input-group flex-1">
+                    <input type="text" id="estado" name="estado" placeholder="UF" maxlength="2" required>
+                </div>
+            </div>
+
+            <button type="submit">Confirmar Endereço</button>
+        </form>
+    </main>
+
+    <script src="/static/js/endereco.js"></script>
+</body>
+</html>

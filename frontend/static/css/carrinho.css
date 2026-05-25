@@ -1,0 +1,421 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS DO CARRINHO (TEMA DARK TECHSEARCH)
+   ========================================================================== */
+
+/* Corpo e Container Principal */
+body {
+    background-color: #0d0e12; /* Fundo escuro idêntico à sua home */
+    color: #ffffff;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.cart-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* Cabeçalho do Carrinho */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.cart-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Efeito azul escuro no span igual ao "tecnologia" da sua Home */
+.cart-header h1 span {
+    background: linear-gradient(45deg, #00aaff, #0a0a0a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   LAYOUT EM DUAS COLUNAS (QUANDO HÁ ITENS)
+   ========================================================================== */
+.cart-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 40px; /* Aumentado para separar mais os itens do resumo */
+    align-items: start;
+}
+
+/* ==========================================================================
+   CARD DO ITEM INDIVIDUAL
+   ========================================================================== */
+.cart-item {
+    background: #151821; /* Grafite escuro para destacar do fundo */
+    border: 1px solid #222531;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.2s, border-color 0.2s;
+    margin-bottom: 16px;
+}
+
+.cart-item:hover {
+    transform: translateY(-2px);
+    border-color: #a855f7; /* Brilho roxo ao passar o mouse */
+}
+
+.cart-item .item-img {
+    font-size: 2.5rem;
+    background: #1e2230;
+    padding: 12px;
+    border-radius: 12px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.item-details {
+    flex: 1;
+    margin-left: 24px;
+}
+
+.item-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #a855f7; /* Roxo neon */
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.item-name {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin: 4px 0 8px 0;
+    font-weight: 600;
+}
+
+.item-price-unit {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+/* CONTROLES DE QUANTIDADE */
+.item-quantity form {
+    display: flex;
+    align-items: center;
+    border: 1px solid #222531;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1e2230;
+}
+
+.qty-btn {
+    background: transparent;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    color: #ffffff;
+    transition: background 0.2s;
+}
+
+.qty-btn:hover {
+    background: #2d334a;
+}
+
+.qty-input {
+    width: 45px;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+/* VALORES E EXCLUSÃO */
+.item-subtotal {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    min-width: 130px;
+    text-align: right;
+    margin-right: 24px;
+}
+
+.btn-remove {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-remove:hover {
+    color: #ff4757; /* Vermelho/Rosa ao apagar */
+}
+
+/* ==========================================================================
+   CARD LATERAL: RESUMO DO PEDIDO
+   ========================================================================== */
+.cart-summary {
+    background: #151821;
+    border: 1px solid #222531;
+    border-radius: 16px;
+    padding: 30px;
+    position: sticky;
+    top: 100px;
+}
+
+.cart-summary h3 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    color: #94a3b8;
+    font-size: 1rem;
+}
+
+.free-shipping {
+    color: #10b981; /* Verde sucesso */
+    font-weight: 600;
+}
+
+/* Área de Cupom Tech */
+.coupon-area {
+    display: flex;
+    gap: 10px;
+    margin: 24px 0;
+}
+
+.coupon-area input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #222531;
+    border-radius: 10px;
+    outline: none;
+    font-size: 0.95rem;
+    background: #1e2230;
+    color: #ffffff;
+}
+
+.coupon-area input:focus {
+    border-color: #a855f7;
+}
+
+.btn-apply {
+    background: #1e2230;
+    border: 1px solid #222531;
+    color: #ffffff;
+    padding: 0 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-apply:hover {
+    background: #a855f7;
+    border-color: #a855f7;
+}
+
+.summary-divider {
+    border: 0;
+    border-top: 1px dashed #222531;
+    margin: 24px 0;
+}
+
+.summary-row.total {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+/* ==========================================================================
+   NOVOS BOTÕES: FINALIZAR COMPRA & CONTINUAR COMPRANDO
+   ========================================================================== */
+
+/* BOTÃO ROXO IGUAL AO "VER PRODUTOS" DA HOME */
+/* ==========================================================================
+   NOVOS BOTÕES: FINALIZAR COMPRA & CONTINUAR COMPRANDO (CIANO CYBERPUNK)
+   ========================================================================== */
+
+/* Container que joga a barra para o rodapé do grid principal */
+.carrinho-botoes-container {
+    grid-column: 1 / -1; /* Força a barra a ocupar a largura total do layout */
+    display: flex;
+    justify-content: space-between; /* Um botão para a esquerda, outro para a direita */
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 24px;
+    border-top: 1px solid #222531;
+}
+
+/* Estilo Base para os Novos Botões */
+.btn-carrinho-novo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    box-sizing: border-box;
+}
+
+/* 1. Botão Continuar Comprando (Canto Inferior Esquerdo) */
+.btn-carrinho-novo.continuar {
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid #222531;
+}
+
+.btn-carrinho-novo.continuar:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #64748b;
+    transform: translateX(-4px); /* Leve recuo indicando retorno */
+}
+
+/* 2. Botão Finalizar Compra (Canto Inferior Direito) */
+.btn-carrinho-novo.finalizar {
+    background: #00e5ff; /* Ciano Neon TechSearch */
+    color: #0d0e12; /* Texto escuro para alto contraste */
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+}
+
+.btn-carrinho-novo.finalizar:hover {
+    background: #00b8d4;
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
+    transform: translateY(-2px) translateX(4px); /* Sobe e avança levemente */
+}
+
+/* Ajuste de responsividade para celulares */
+@media (max-width: 768px) {
+    .carrinho-botoes-container {
+        flex-direction: column-reverse; /* No celular, empilha com avançar no topo */
+        gap: 12px;
+    }
+    .btn-carrinho-novo {
+        width: 100%;
+        justify-content: center;
+    }
+    .btn-carrinho-novo.continuar:hover {
+        transform: none;
+    }
+    .btn-carrinho-novo.finalizar:hover {
+        transform: none;
+    }
+}
+/* ==========================================================================
+   ESTADO DO CARRINHO VAZIO (CENTRALIZADO E BONITO)
+   ========================================================================== */
+.cart-empty {
+    text-align: center;
+    padding: 80px 40px;
+    background: #151821;
+    border: 1px solid #222531;
+    border-radius: 24px;
+    max-width: 600px;
+    margin: 60px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.empty-icon {
+    font-size: 4.5rem;
+    background: linear-gradient(45deg, #00aaff, #0a0a0a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 24px;
+}
+
+.cart-empty h2 {
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.cart-empty p {
+    color: #94a3b8;
+    margin-bottom: 36px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Botão de retorno estilizado no carrinho vazio */
+.btn-hero-fallback {
+    display: inline-block;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+.btn-hero-fallback:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.6);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (TELA MENOR E CELULAR)
+   ========================================================================== */
+@media (max-width: 992px) {
+    .cart-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .cart-summary {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+    }
+    
+    .item-details {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    
+    .item-subtotal {
+        text-align: left;
+        margin-top: 15px;
+    }
+    
+    .btn-remove {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+}

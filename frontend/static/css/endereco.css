@@ -1,0 +1,41 @@
+/* ===== ESTILOS EXCLUSIVOS DA TELA DE ENDEREÇO ===== */
+
+.endereco-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+    width: 100%;
+    padding: 20px 5%;
+}
+
+/* Garante que o formulário herde os estilos do home.css mas tenha um limite de largura ideal */
+.endereco-container .form {
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Linha para agrupar inputs lado a lado */
+.form-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Proporções para os campos divididos */
+.flex-1 {
+    flex: 1;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+/* Mensagem de Erro */
+.error-message {
+    color: #ff4d4f;
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-align: left;
+    font-weight: 500;
+}

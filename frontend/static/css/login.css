@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  font-family: 'Audiowide', sans-serif;
+  background: linear-gradient(135deg, #000 60%, #001f33);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* organiza em coluna */
+  min-height: 100vh;
+}
+
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* atrás do conteúdo */
+}
+
+.container {
+  flex: 1; /* ocupa espaço disponível */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* centraliza vertical */
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+
+.logo {
+  font-size: 2.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #00aaff, #0088cc, #00ffaa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 3s infinite alternate;
+  margin-bottom: 20px;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #00aaff, 0 0 20px #0088cc;
+  }
+  to {
+    text-shadow: 0 0 20px #00ffaa, 0 0 40px #00aaff;
+  }
+}
+
+.form {
+  background: rgba(20, 20, 20, 0.85);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00aaff;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.form h2 {
+  margin-bottom: 10px;
+  color: #00aaff;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border-radius: 8px;
+  background-color: #0a0a0a;
+  color: #00aaff;
+  outline: none;
+  border: 1px solid #00aaff;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: #00ffaa;
+  box-shadow: 0 0 10px #00aaff;
+  background-color: #111;
+}
+
+.input-group i {
+  position: absolute;
+  right: 12px;
+  color: #00aaff;
+}
+
+.form button {
+  background: linear-gradient(90deg, #00aaff, #0088cc);
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: Audiowide, sans-serif;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.form button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00aaff;
+}
+
+.redirect {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.redirect a {
+  color: #00aaff;
+  text-decoration: none;
+}
+
+.redirect a:hover {
+  text-decoration: underline;
+}
+
+.auth-footer-bottom {
+  text-align: center;
+  padding: 10px;
+  color: #00aaff;
+  font-size: 0.9rem;
+  margin-top: auto; /* empurra para baixo */
+}

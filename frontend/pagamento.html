@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Pagamento - TechSearch</title>
+    <link rel="stylesheet" href="/static/css/pagamento.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="alerta-container"></div>
+
+    <div class="payment-container">
+        <h2>Confirmar Pagamento</h2>
+
+        <div class="checkout-box">
+            <h3><i class="fas fa-shopping-bag"></i> Resumo</h3>
+            <div id="resumo-itens">
+                {% for item in cart_items %}
+                <div class="resumo-item">
+                    <span>{{ item.product.nome }} (x{{ item.quantity }})</span>
+                    <span>R$ {{ item.subtotal }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="total-row">
+                <span>Total:</span> <span>R$ {{ total_price }}</span>
+            </div>
+        </div>
+
+        <form method="POST" action="/processar-pagamento">
+            
+            <div class="payment-methods">
+                <h4>Selecione o método de pagamento:</h4>
+                <label>
+                    <input type="radio" name="pagamento" value="cartao" checked onchange="toggleFields()"> Cartão de Crédito
+                </label>
+                <label>
+                    <input type="radio" name="pagamento" value="pix" onchange="toggleFields()"> Pix
+                </label>
+                <label>
+                    <input type="radio" name="pagamento" value="boleto" onchange="toggleFields()"> Boleto
+                </label>
+
+                <div id="fields-cartao">
+                    <div class="input-group">
+                        <input type="text" name="card_number" placeholder="Número do Cartão">
+                    </div>
+                </div>
+
+                <div id="fields-pix" class="hidden">
+                    <div class="input-group">
+                        <input type="text" name="pix_key" placeholder="Chave Pix">
+                    </div>
+                </div>
+
+                <div id="fields-boleto" class="hidden">
+                    <p>O boleto será enviado para o seu e-mail.</p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-pagar">Finalizar Compra</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleFields() {
+            const metodo = document.querySelector('input[name="pagamento"]:checked').value;
+            document.getElementById('fields-cartao').classList.toggle('hidden', metodo !== 'cartao');
+            document.getElementById('fields-pix').classList.toggle('hidden', metodo !== 'pix');
+            document.getElementById('fields-boleto').classList.toggle('hidden', metodo !== 'boleto');
+        }
+        toggleFields();
+    </script>
+</body>
+</html>

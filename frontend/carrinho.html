@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho | TechSearch</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/carrinho.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    
+    <header>
+        <section class="top-header">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static/imagens/logo.png" alt="TechSearch">
+                </a>
+            </div>
+
+            <form class="busca" onsubmit="event.preventDefault();">
+                <input type="text" placeholder="Investigue na TechSearch!" id="searchInput">
+                <ul id="resultsList"></ul>
+                <button type="submit">🔍</button>
+            </form>
+                
+            <div class="user-info">
+                {% if user %}
+                    <span class="welcome-text">Olá, <strong>{{ user.username }}</strong></span>
+                {% else %}
+                    <span class="auth-links">
+                        <a href="/login.html">Entre</a> ou 
+                        <strong><a href="/cadastro.html">Cadastre-se</a></strong>
+                    </span>
+                {% endif %}
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <div class="cart-items">
+            {% for item in cart_items %}
+            <div class="item">
+                <span>{{ item.product.nome }}</span>
+                <span>R$ {{ item.price }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <aside class="summary">
+        <h3>Resumo</h3>
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <span>R$ {{ subtotal }}</span>
+        </div>
+        
+        <div class="coupon-area">
+            <form method="POST" action="/aplicar-cupom">
+                <div style="display: flex; gap: 5px;">
+                    <input type="text" name="codigo_cupom" placeholder="Digite seu cupom...">
+                    <button type="submit" class="btn-apply">Aplicar</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="summary-row total">
+            <span>Total</span>
+            <span>R$ {{ total_price }}</span>
+        </div>
+    </aside>
+
+    <div class="carrinho-botoes-container">
+        <a href="/" class="btn-carrinho-novo continuar">
+            <i class="fas fa-arrow-left"></i> Continuar Comprando
+        </a>
+        <a href="/endereco.html" class="btn-carrinho-novo finalizar">
+            Finalizar Compra
+        </a>
+    </div>
+
+</body>
+</html>

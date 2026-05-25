@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+:root {
+    --primary: #00e5ff;
+    --card-bg: rgba(20, 20, 20, 0.85);
+}
+
+body {
+    background: linear-gradient(135deg, #000 60%, #001f33);
+    color: #eaeaea;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 20px;
+}
+
+.payment-container {
+    background: var(--card-bg);
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 170, 255, 0.4);
+    max-width: 500px;
+    margin: 40px auto;  
+    border: 1px solid rgba(0, 170, 255, 0.2);
+}
+
+/* Campos de Input */
+.input-group { margin-bottom: 15px; }
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #0a0a0a;
+    color: #fff;
+}
+.row-inputs { display: flex; gap: 10px; }
+.hidden { display: none !important; }
+
+/* Botões e Seletor */
+.payment-methods-selector { display: flex; gap: 10px; margin-bottom: 20px; }
+.method-option { 
+    background: #0a0a0a; border: 1px solid #333; padding: 12px; border-radius: 8px; cursor: pointer; flex: 1; text-align: center;
+}
+.btn-pagar {
+    background: linear-gradient(90deg, #00aaff, #0088cc); color: #fff; width: 100%; padding: 14px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer;
+}
+
+/* Toast */
+.alerta-card {
+    background: #111; border: 1px solid var(--primary); padding: 15px; border-radius: 8px; position: fixed; top: 20px; right: 20px; color: var(--primary);
+}
+
+.btn-boleto {
+    background: linear-gradient(90deg, #00aaff, #0088cc);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    width: auto;
+    display: inline-block;
+    transition: 0.3s ease;
+}
+
+.btn-boleto:hover {
+    box-shadow: 0 0 12px rgba(0, 170, 255, 0.5);
+    transform: scale(1.03);
+}

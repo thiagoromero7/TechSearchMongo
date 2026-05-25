@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechSearch</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/teladebusca.css">
+</head>
+<body>
+
+    <header>
+        <section class="top-header">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static/imagens/logo.png" alt="TechSearch">
+                </a>
+            </div>
+
+            <form class="busca" onsubmit="event.preventDefault();">
+                <input type="text" placeholder="Investigue na TechSearch!" id="searchInput" onkeyup="filtrarProdutosHome()">
+                <ul id="resultsList"></ul>
+                <button type="submit">🔍</button>
+            </form>
+                
+            <div class="user-info">
+                <span class="welcome-text">Olá, <strong>Visitante</strong></span>
+                <span class="auth-links">
+                    <a href="/login.html">Entre</a> ou 
+                    <strong><a href="/cadastro.html">Cadastre-se</a></strong>
+                </span>
+            </div>
+
+            <nav class="atalhos">
+                <a href="#" title="Atendimento">🎧</a>
+                <a href="/favoritos.html" title="Favoritos">❤️</a>
+                <a href="/carrinho.html" title="Carrinho" style="position: relative;">
+                    🛒<span class="cart-badge" style="position: absolute; top: -10px; right: -10px; background: var(--primary); color: #111; font-size: 11px; font-weight: bold; padding: 2px 6px; border-radius: 50%;">0</span>
+                </a>
+            </nav>
+        </section>
+        <hr> 
+    </header>
+
+    <main>
+        <section class="ofertas-container">
+            <div class="ofertas-header">
+                <h2>🔥 Ofertas TechSearch!</h2>
+            </div>
+            <div class="carousel-produtos-container">
+                <button class="seta-prod anterior" onclick="scrollProdutos(-1)">&#10094;</button>
+                <div class="produtos-grid" id="produtosSlider">
+                    </div>
+                <button class="seta-prod proximo" onclick="scrollProdutos(1)">&#10095;</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/pagamento.js"></script>
+    <script src="/static/js/home.js"></script>
+    <script src="/static/js/teladebusca.js"></script>
+
+    <script>
+        // Exemplo de como você vai carregar os produtos do MongoDB com o novo backend
+        fetch('/api/techs')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('produtosSlider');
+                // Aqui você cria o HTML dos cards baseado no 'data' que vem do MongoDB
+            });
+    </script>
+</body>
+</html>

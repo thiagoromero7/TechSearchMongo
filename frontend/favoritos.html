@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Favoritos - TechSearch</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/teladebusca.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <section class="top-header">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static/imagens/logo.png" alt="TechSearch">
+                </a>
+            </div>
+
+            <form class="busca" onsubmit="event.preventDefault();">
+                <input type="text" placeholder="Investigue na TechSearch!" id="searchInput">
+                <ul id="resultsList"></ul>
+                <button type="submit">🔍</button>
+            </form>
+                
+            <div class="user-info">
+                {% if user %}
+                    <span class="welcome-text">Olá, <strong>{{ user.username }}</strong></span>
+                    <a href="/logout" class="logout-btn">Sair</a>
+                {% else %}
+                    <span class="welcome-text">Olá, <strong>Visitante</strong></span>
+                    <span class="auth-links">
+                        <a href="/login.html">Entre</a> ou 
+                        <strong><a href="/cadastro.html">Cadastre-se</a></strong>
+                    </span>
+                {% endif %}
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section class="favoritos-container">
+            <h2>❤️ Meus Favoritos</h2>
+            <div class="produtos-grid" id="favoritosGrid">
+                {% for produto in produtos_favoritos %}
+                    <div class="produto-card">
+                        <img src="{{ produto.imagem }}" alt="{{ produto.nome }}">
+                        <h3>{{ produto.nome }}</h3>
+                        <p>R$ {{ produto.preco }}</p>
+                        <a href="/carrinho/adicionar/{{ produto.id }}" class="btn-add-carrinho">Adicionar ao Carrinho</a>
+                    </div>
+                {% else %}
+                    <div class="vazio-container">
+                        <p>Ainda não tem produtos nos favoritos.</p>
+                        <a href="/" class="btn-add-carrinho-novo">Explorar Produtos</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/home.js"></script>
+    <script src="/static/js/teladebusca.js"></script>
+</body>
+</html>
