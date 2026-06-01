@@ -323,9 +323,7 @@ async def processar_pagamento(request: Request, pagamento: str = Form(...)):
     # 4. Finalmente, redireciona o usuário de volta para a tela inicial
     return RedirectResponse(url="/", status_code=303)
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+
 
 @app.post("/favoritos/remover/{item_id}")
 async def remover_dos_favoritos(request: Request, item_id: str):
@@ -337,18 +335,29 @@ async def remover_dos_favoritos(request: Request, item_id: str):
 
 @app.get("/search")
 async def search(request: Request, q: str = ""):
-    # Filtro: busca o termo no campo 'nome'
-    filtro = {"nome": {"$regex": q, "$options": "i"}} if q else {}
+    # Filtro: busca o termo no campo 'nome' OU no campo 'categoria'
+    if q:
+        filtro = {
+            "$or": [
+                {"nome": {"$regex": q, "$options": "i"}},
+                {"categoria": {"$regex": q, "$options": "i"}}
+            ]
+        }
+    else:
+        filtro = {}
     
-    # Busca os produtos filtrados
     produtos = await db.techs.find(filtro).to_list(length=100)
     
-    # Mantém a lógica de sessão para o topo da página
     user_session = request.session.get("username")
     user_context = {"username": user_session} if user_session else None
     
     return templates.TemplateResponse(
         request=request, 
-        name="home.html", # Reutiliza a página inicial para mostrar resultados
+        name="home.html", 
         context={"produtos": produtos, "user": user_context, "termo_busca": q}
     )
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
