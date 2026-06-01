@@ -334,3 +334,21 @@ async def remover_dos_favoritos(request: Request, item_id: str):
     
     # Redireciona de volta para a página de favoritos atualizada
     return RedirectResponse(url="/favoritos.html", status_code=303)
+
+@app.get("/search")
+async def search(request: Request, q: str = ""):
+    # Filtro: busca o termo no campo 'nome'
+    filtro = {"nome": {"$regex": q, "$options": "i"}} if q else {}
+    
+    # Busca os produtos filtrados
+    produtos = await db.techs.find(filtro).to_list(length=100)
+    
+    # Mantém a lógica de sessão para o topo da página
+    user_session = request.session.get("username")
+    user_context = {"username": user_session} if user_session else None
+    
+    return templates.TemplateResponse(
+        request=request, 
+        name="home.html", # Reutiliza a página inicial para mostrar resultados
+        context={"produtos": produtos, "user": user_context, "termo_busca": q}
+    )

@@ -17,10 +17,11 @@
                 </a>
             </div>
 
-            <form class="busca" onsubmit="event.preventDefault();">
-                <input type="text" placeholder="Investigue na TechSearch!" id="searchInput" onkeyup="filtrarProdutosHome()">
-                <ul id="resultsList"></ul>
-                <button type="submit">🔍</button>
+            <form action="/search" method="GET" class="busca">
+                <input type="text" name="q" placeholder="Pesquisar tecnologias..." required>
+                <button type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
             </form>
                 
             <div class="user-info">
